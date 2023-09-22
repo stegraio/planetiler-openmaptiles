@@ -168,14 +168,14 @@ public class Transportation implements
     );
     MINZOOMS = Map.ofEntries(
       entry(FieldValues.CLASS_PATH, z13Paths ? 12 : 12),
-      entry(FieldValues.CLASS_TRACK, 9),
-      entry(FieldValues.CLASS_SERVICE, 9),
-      entry(FieldValues.CLASS_MINOR, 9),
+      entry(FieldValues.CLASS_TRACK, 7),
+      entry(FieldValues.CLASS_SERVICE, 7),
+      entry(FieldValues.CLASS_MINOR, 7),
       entry(FieldValues.CLASS_RACEWAY, 12),
-      entry(FieldValues.CLASS_TERTIARY, 9),
+      entry(FieldValues.CLASS_TERTIARY, 8),
       entry(FieldValues.CLASS_BUSWAY, 11),
       entry(FieldValues.CLASS_BUS_GUIDEWAY, 11),
-      entry(FieldValues.CLASS_SECONDARY, 9),
+      entry(FieldValues.CLASS_SECONDARY, 7),
       entry(FieldValues.CLASS_PRIMARY, 7),
       entry(FieldValues.CLASS_TRUNK, 5),
       entry(FieldValues.CLASS_MOTORWAY, 4)
@@ -406,7 +406,7 @@ public class Transportation implements
     if ("pier".equals(element.manMade())) {
       minzoom = 13;
     } else if (isResidentialOrUnclassified(highway)) {
-      minzoom = 9;
+      minzoom = 7;
     } else {
       String baseClass = highwayClass.replace("_construction", "");
       minzoom = switch (baseClass) {
