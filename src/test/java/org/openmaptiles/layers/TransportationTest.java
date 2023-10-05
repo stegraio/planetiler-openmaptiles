@@ -44,7 +44,7 @@ class TransportationTest extends AbstractLayerTest {
       "layer", "<null>",
       "_buffer", 4d,
       "_minpixelsize", 0d,
-      "_minzoom", 7
+      "_minzoom", 8
     ), Map.of(
       "_layer", "transportation_name",
       "_type", "line",
@@ -135,7 +135,7 @@ class TransportationTest extends AbstractLayerTest {
       "subclass", "path",
       "surface", "unpaved",
       "oneway", "<null>",
-      "_minzoom", 9
+      "_minzoom", 10
     )), process(lineFeature(Map.of(
       "surface", "dirt",
       "highway", "path"
@@ -633,7 +633,7 @@ class TransportationTest extends AbstractLayerTest {
       "_layer", "transportation",
       "class", "service",
       "service", "driveway",
-      "_minzoom", 7 
+      "_minzoom", 8 
     )), process(lineFeature(Map.of(
       "highway", "service",
       "service", "driveway"
@@ -649,7 +649,7 @@ class TransportationTest extends AbstractLayerTest {
       "mtb_scale", "4",
       "surface", "unpaved",
       "bicycle", "yes",
-      "_minzoom", 7 
+      "_minzoom", 8 
     ), Map.of(
       "_layer", "transportation_name",
       "class", "path",
@@ -672,7 +672,7 @@ class TransportationTest extends AbstractLayerTest {
       "class", "track",
       "surface", "unpaved",
       "horse", "yes",
-      "_minzoom", 7 
+      "_minzoom", 8 
     ), Map.of(
       "_layer", "transportation_name",
       "class", "track",
@@ -693,7 +693,7 @@ class TransportationTest extends AbstractLayerTest {
       "class", "track",
       "surface", "unpaved",
       "horse", "yes",
-      "_minzoom", 9 
+      "_minzoom", 10 
     )), process(lineFeature(Map.of(
       "highway", "track",
       "surface", "dirt",
@@ -1028,7 +1028,7 @@ class TransportationTest extends AbstractLayerTest {
       "oneway", "<null>",
       "ramp", "<null>",
 
-      "_minzoom", 7,
+      "_minzoom", 8,
       "_maxzoom", 14,
       "_type", "line"
     )), process(lineFeature(Map.of(
@@ -1073,7 +1073,7 @@ class TransportationTest extends AbstractLayerTest {
     assertFeatures(13, List.of(Map.of(
       "class", "rail",
       "subclass", "rail",
-      "_minzoom", 7,
+      "_minzoom", 8,
       "service", "yard"
     )), process(lineFeature(Map.of(
       "railway", "rail",
@@ -1169,7 +1169,7 @@ class TransportationTest extends AbstractLayerTest {
       "_layer", "transportation",
       "class", "pier",
 
-      "_minzoom", 7,
+      "_minzoom", 8,
       "_maxzoom", 14,
       "_type", "polygon"
     )), process(polygonFeature(Map.of(
@@ -1194,7 +1194,7 @@ class TransportationTest extends AbstractLayerTest {
       "class", "path",
       "subclass", "pedestrian",
 
-      "_minzoom", 7,
+      "_minzoom", 8,
       "_maxzoom", 14,
       "_type", "polygon"
     );
@@ -1203,7 +1203,7 @@ class TransportationTest extends AbstractLayerTest {
       "class", "path",
       "subclass", "pedestrian",
 
-      "_minzoom", 9,
+      "_minzoom", 10,
       "_maxzoom", 14,
       "_type", "line"
     );
@@ -1286,7 +1286,7 @@ class TransportationTest extends AbstractLayerTest {
     assertFeatures(14, List.of(Map.of(
       "_layer", "transportation",
       "class", "bridge",
-      "_minzoom", 7,
+      "_minzoom", 8,
       "_type", "polygon"
     )), process(closedWayFeature(Map.of(
       "layer", "1",
@@ -1296,7 +1296,7 @@ class TransportationTest extends AbstractLayerTest {
     assertFeatures(14, List.of(Map.of(
       "_layer", "transportation",
       "class", "bridge",
-      "_minzoom", 7,
+      "_minzoom", 8,
       "_type", "polygon"
     )), process(closedWayFeature(Map.of(
       "layer", "1",
@@ -1307,7 +1307,7 @@ class TransportationTest extends AbstractLayerTest {
     assertFeatures(14, List.of(Map.of(
       "_layer", "transportation",
       "class", "pier",
-      "_minzoom", 7,
+      "_minzoom", 8,
       "_type", "polygon"
     )), process(closedWayFeature(Map.of(
       "layer", "1",
