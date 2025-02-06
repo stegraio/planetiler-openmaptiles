@@ -1760,6 +1760,7 @@ public class OpenMapTilesSchema {
       public static final String CLASS_AERIALWAY = "aerialway";
       public static final String CLASS_ENTRANCE = "entrance";
       public static final String CLASS_CAMPSITE = "campsite";
+      public static final String CLASS_BARRIER = "barrier";
       public static final String CLASS_LAUNDRY = "laundry";
       public static final String CLASS_GROCERY = "grocery";
       public static final String CLASS_LIBRARY = "library";
@@ -1785,7 +1786,7 @@ public class OpenMapTilesSchema {
       public static final String CLASS_CASTLE = "castle";
       public static final String CLASS_ATM = "atm";
       public static final Set<String> CLASS_VALUES = Set.of("shop", "town_hall", "golf", "fast_food", "park", "bus",
-        "railway", "aerialway", "entrance", "campsite", "laundry", "grocery", "library", "college", "lodging",
+        "railway", "aerialway", "entrance", "campsite", "barrier", "laundry", "grocery", "library", "college", "lodging",
         "ice_cream", "post", "cafe", "school", "alcohol_shop", "bar", "harbor", "car", "hospital", "cemetery",
         "attraction", "beer", "music", "stadium", "art_gallery", "clothing_store", "swimming", "castle", "atm");
     }

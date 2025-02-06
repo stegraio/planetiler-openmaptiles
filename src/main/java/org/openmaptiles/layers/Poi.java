@@ -51,6 +51,7 @@ import com.onthegomap.planetiler.expression.MultiExpression;
 import com.onthegomap.planetiler.stats.Stats;
 import com.onthegomap.planetiler.util.Parse;
 import com.onthegomap.planetiler.util.Translations;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.openmaptiles.generated.OpenMapTilesSchema;
@@ -76,6 +77,7 @@ public class Poi implements
    */
 
   private static final Map<String, Integer> CLASS_RANKS = Map.ofEntries(
+    entry(FieldValues.CLASS_BARRIER, 10),
     entry(FieldValues.CLASS_HOSPITAL, 20),
     entry(FieldValues.CLASS_RAILWAY, 40),
     entry(FieldValues.CLASS_BUS, 50),
@@ -120,9 +122,17 @@ public class Poi implements
   }
 
   private int minzoom(String subclass, String mappingKey) {
-    boolean lowZoom = ("station".equals(subclass) && "railway".equals(mappingKey)) ||
-      "halt".equals(subclass) || "ferry_terminal".equals(subclass);
-    return lowZoom ? 12 : 14;
+    boolean lowZoom =  ("station".equals(subclass) && "railway".equals(mappingKey)) ||
+      "ferry_terminal".equals(subclass) || 
+      "camp_site".equals(subclass) ||
+      "viewpoint".equals(subclass) || 
+      "shelter".equals(subclass) ||
+      "picnic_site".equals(subclass) ||
+      "lift_gate".equals(subclass) ||
+      "gate".equals(subclass) ||
+      "barrier".equals(subclass) ||
+      "fuel".equals(subclass) || "attraction".equals(subclass);
+    return lowZoom ? 8 : 14;
   }
 
   @Override
@@ -178,6 +188,33 @@ public class Poi implements
     int poiClassRank = poiClassRank(poiClass);
     int rankOrder = poiClassRank + ((nullOrEmpty(name)) ? 2000 : 0);
 
+    Map<String, String> tagsToInclude = new HashMap<String, String>();
+
+    tagsToInclude.put("shelter_type", "string");
+    tagsToInclude.put("wikidata", "string");
+    tagsToInclude.put("wikimedia_common", "string");
+    tagsToInclude.put("access", "string");
+    tagsToInclude.put("capcaity:persons", "string");
+    tagsToInclude.put("fee", "string");
+    tagsToInclude.put("bicycle", "string");
+    tagsToInclude.put("motorcyle", "string");
+    tagsToInclude.put("motor_vehicle", "string");
+    tagsToInclude.put("tents", "string");
+    tagsToInclude.put("opening_hours", "string");
+    tagsToInclude.put("website", "string");
+    tagsToInclude.put("phone", "string");
+    tagsToInclude.put("toilets:disposal", "string");
+
+    Map<String, Object> additionalAttrs = new HashMap<String, Object>();
+
+    for (Map.Entry<String, String> entry : tagsToInclude.entrySet()) {
+      Object obj = element.source().getTag(entry.getKey());
+
+      if (obj != null) {
+        additionalAttrs.put(entry.getKey(), obj.toString());
+      }
+    }
+
     output.setBufferPixels(BUFFER_SIZE)
       .setAttr(Fields.CLASS, poiClass)
       .setAttr(Fields.SUBCLASS, subclass)
@@ -185,6 +222,7 @@ public class Poi implements
       .setAttr(Fields.LEVEL, Parse.parseLongOrNull(element.source().getTag("level")))
       .setAttr(Fields.INDOOR, element.indoor() ? 1 : null)
       .putAttrs(OmtLanguageUtils.getNames(element.source().tags(), translations))
+      .putAttrs(additionalAttrs)
       .setPointLabelGridPixelSize(14, 64)
       .setSortKey(rankOrder)
       .setMinZoom(minzoom(element.subclass(), element.mappingKey()));

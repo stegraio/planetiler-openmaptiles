@@ -39,7 +39,7 @@ class PoiTest extends AbstractLayerTest {
       "class", "railway",
       "subclass", "halt",
       "rank", "<null>",
-      "_minzoom", 12
+      "_minzoom", 8
     )), process(feature(area, Map.of(
       "railway", "station",
       "funicular", "yes",
@@ -55,7 +55,7 @@ class PoiTest extends AbstractLayerTest {
       "class", "railway",
       "subclass", "subway",
       "rank", "<null>",
-      "_minzoom", 12
+      "_minzoom", 8
     )), process(feature(area, Map.of(
       "railway", "station",
       "station", "subway",
@@ -122,7 +122,7 @@ class PoiTest extends AbstractLayerTest {
       "class", "ferry_terminal",
       "subclass", "ferry_terminal",
       "name", "Water Taxi",
-      "_minzoom", 12
+      "_minzoom", 8
     )), process(feature(area, Map.of(
       "amenity", "ferry_terminal",
       "information", "infotype",

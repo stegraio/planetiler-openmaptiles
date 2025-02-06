@@ -342,6 +342,8 @@ public class Transportation implements
     String highway = element.highway();
     String highwayClass = highwayClass(element.highway(), element.publicTransport(), element.construction(),
       element.manMade());
+    //String gradeClass =  element.source.getTag("")
+
     String service = service(element.service());
     if (highwayClass != null) {
       if (isPierPolygon(element)) {
@@ -357,9 +359,16 @@ public class Transportation implements
       Integer rampAboveZ12 = (highwayRamp || element.isRamp()) ? 1 : null;
       Integer rampBelowZ12 = highwayRamp ? 1 : null;
 
+      Object mtbScaleObj = element.source().getTag("mtb:scale");
+      String mtbScale = mtbScaleObj != null ? mtbScaleObj.toString() : null;
+
+      Object gradeObj = element.source().getTag("tracktype");
+      String grade = gradeObj != null ? gradeObj.toString() : null; 
       FeatureCollector.Feature feature = features.line(LAYER_NAME).setBufferPixels(BUFFER_SIZE)
         // main attributes at all zoom levels (used for grouping <= z8)
         .setAttr(Fields.CLASS, highwayClass)
+        .setAttr("grade", nullIfEmpty(grade))
+        .setAttr("mtb_scale", nullIfEmpty(mtbScale))
         .setAttr(Fields.SUBCLASS, highwaySubclass(highwayClass, element.publicTransport(), highway))
         .setAttr(Fields.BRUNNEL, brunnel(element.isBridge(), element.isTunnel(), element.isFord()))
         .setAttr(Fields.NETWORK, networkType != null ? networkType.name : null)
@@ -426,7 +435,7 @@ public class Transportation implements
   private boolean isPierPolygon(Tables.OsmHighwayLinestring element) {
     if ("pier".equals(element.manMade())) {
       try {
-        if (element.source().worldGeometry()instanceof LineString lineString && lineString.isClosed()) {
+        if (element.source().worldGeometry() instanceof LineString lineString && lineString.isClosed()) {
           // ignore this because it's a polygon
           return true;
         }
